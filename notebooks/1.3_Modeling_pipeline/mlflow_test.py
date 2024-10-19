@@ -26,8 +26,8 @@ def eval_metrics(actual, pred):
 
 
 if __name__ == "__main__": 
-    mlflow.set_tracking_uri('http://localhost:5000')
-    experiment = mlflow.set_experiment("sklearn-wine")
+    mlflow.set_tracking_uri('http://localhost:5000') #endpoint donde esta corriendo MLflow
+    experiment = mlflow.set_experiment("sklearn-wine") #nombre del experimento
     print("mlflow tracking uri:", mlflow.tracking.get_tracking_uri())
     print("experiment:", experiment)
     warnings.filterwarnings("ignore")
@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
 
         model_info = mlflow.sklearn.log_model(
-            sk_model=lr, artifact_path="model", signature=signature)
+            sk_model=lr, artifact_path="model", signature=signature) #guarda el modelo con nombre modelo en el experimento
         print("Saved model!", model_info.model_uri)
 
         sklearn_pyfunc = mlflow.pyfunc.load_model(model_uri=model_info.model_uri)
